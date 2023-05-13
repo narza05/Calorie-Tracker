@@ -1,0 +1,46 @@
+name: flutter_application_1
+description: A new Flutter project.
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.19.6 <3.0.0"
+
+dependencies:
+  # animated_horizontal_calendar: ^0.0.3
+  animated_horizontal_calendar:
+    git:
+      url: https://github.com/narza05/animated_horizontal_calendar
+
+  # calendar_timeline: ^1.1.2
+  calendar_timeline:
+    git:
+      url: https://github.com/narza05/calendar_timeline
+  simple_circular_progress_bar: ^1.0.2
+
+
+  flutter:
+    sdk: flutter
+  sleek_circular_slider: ^2.0.1
+  http: ^0.13.6
+  toast: ^0.3.0
+  google_fonts: ^4.0.4
+cupertino_icons: ^1.0.2
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+
+  # assets:
+  #   - images/a_dot_burr.jpeg
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: fonts/Poppins-Regular.ttf
