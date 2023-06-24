@@ -1,16 +1,20 @@
-# Fitness_Application
+## Fitness Mobile Application
 
-A new Flutter project.
+<p><img src="https://github.com/narza05/Fitness-Application/blob/main/assets/WhatsApp%20Image%202023-06-24%20at%2013.10.47%20(2).jpeg" width="220" alt="accessibility text" style="margin-right: 10px;"/>
+  <img src="https://github.com/narza05/Fitness-Application/blob/main/assets/WhatsApp%20Image%202023-06-24%20at%2013.10.47%20(1).jpeg" width="220" alt="accessibility text"style="margin-right: 10px;"/>
+  <img src="https://github.com/narza05/Fitness-Application/blob/main/assets/WhatsApp%20Image%202023-06-24%20at%2013.10.47.jpeg" width="220" alt="accessibility text"style="margin-right: 10px;"/>
+  </p>
 
-## Getting Started
+#### Discription: 
+* An application used to manage fitness related tasks like calories tracker. (Upcoming Features Workout Tracker) 
 
-This project is a starting point for a Flutter application.
+#### Technologies Used: 
+* flutter 
+* Php
+* Sql 
+* Xampp
+* Android Studio
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Features: 
+* Calorie Tracker
+* Workout Tracker (In progress)
