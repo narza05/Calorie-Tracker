@@ -1,16 +1,16 @@
+import 'dart:ui';
+
 import 'package:flutter_application_1/imports.dart';
 
 class ConstantsWidget {
-
-  static TextStyle listItemText(Color color, double size, FontWeight fontWeight) {
+  static TextStyle listItemText(
+      Color color, double size, FontWeight fontWeight) {
     return TextStyle(
         fontFamily: "Poppins",
         fontWeight: fontWeight,
-        fontSize:  size,
+        fontSize: size,
         color: color);
   }
-
-
 
   static Widget getBasicScreen(BuildContext context, Widget child) {
     var screen = Scaffold(
@@ -30,55 +30,85 @@ class ConstantsWidget {
     return screen;
   }
 
-  static BoxDecoration getContainerBorder(
-      Color bgcolor, Color color, double radius, double width) {
-    var decoration = BoxDecoration(
-      border: Border.all(color: color, width: width),
-      borderRadius: BorderRadius.all(
-        Radius.circular(radius),
+  static getAppBar(String title, Widget? widget) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 15),
+      child: Container(
+        height: 50,
+        child: Stack(
+          children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Icon(
+                Icons.arrow_back,
+                size: 20,
+              ),
+            ),
+            Align(
+              alignment: Alignment.center,
+              child: Text(
+                title,
+                style: TextStyle(
+                    fontFamily: "Poppins", fontWeight: FontWeight.bold),
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: widget,
+            ),
+          ],
+        ),
       ),
-      color: bgcolor,
     );
-    return decoration;
   }
 
-  static Container getTopLeftButton(IconData iconData) {
-    var button = Container(
-      margin: EdgeInsets.only(left: 20),
-      padding: EdgeInsets.all(2),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(
-          Radius.circular(10),
+
+  static getContainerBorder(Color color, double radius) {
+    return BoxDecoration(
+        color: color, borderRadius: BorderRadius.all(Radius.circular(radius)));
+  }
+
+  static Widget getTopLeftButton(IconData iconData, AlignmentGeometry align,
+      double ptop, Function() ontap) {
+    var button = GestureDetector(
+      onTap: ontap,
+      child: Align(
+        alignment: align,
+        child: Container(
+          margin: EdgeInsets.only(top: ptop, left: 20, right: 20),
+          padding: EdgeInsets.all(2),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(
+              Radius.circular(10),
+            ),
+            border:
+                Border.all(color: Constants.mygrey.withOpacity(0), width: 1),
+          ),
+          child: Icon(
+            iconData,
+            color: Colors.black,
+            size: 22,
+          ),
         ),
-        border: Border.all(color: Constants.myred, width: 1),
       ),
-      child: Icon(iconData),
     );
     return button;
   }
 
-  static Align getBottomButton(String text, double pbottom, double ptop) {
-    var button = Align(
-      alignment: Alignment.bottomCenter,
+  static getBottomButton(String text) {
+    return Align(
       child: Container(
-        alignment: Alignment.center,
-        margin: EdgeInsets.only(bottom: pbottom, left: 10, right: 10, top: ptop),
-        width: double.infinity,
         height: 50,
         decoration: BoxDecoration(
-            color: Constants.myred,
-            borderRadius: BorderRadius.all(Radius.circular(20))),
-        child: Text(
-          text,
-          style: TextStyle(
-              fontFamily: "Poppins",
-              fontSize: 15,
-              fontWeight: FontWeight.bold,
-              color: Colors.white),
+            color: Constants.myred
         ),
+        child: Center(child: Text(text, style: TextStyle(
+            color: Colors.white,
+            fontFamily: "Poppins",
+            fontSize: 16
+        ),)),
       ),
     );
-    return button;
   }
 
   static Widget getFadedContainer(
@@ -103,16 +133,12 @@ class ConstantsWidget {
     return container;
   }
 
-  static Widget getTextField(
-    double width,
-    double ptop,
-    String hint,
-      TextEditingController? controller
-  ) {
+  static Widget getTextField(double width, double ptop, String hint,
+      TextEditingController? controller) {
     var textfield = Container(
       height: 45,
       width: double.infinity,
-      margin: EdgeInsets.only(left: 10, right: 10, top: 10),
+      margin: EdgeInsets.only(left: 10, right: 10, top: ptop),
       child: TextField(
         controller: controller,
         textAlign: TextAlign.center,

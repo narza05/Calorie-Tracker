@@ -1,4 +1,7 @@
 import 'package:flutter_application_1/calorie_tracker/all_food.dart';
+import 'package:flutter_application_1/calorie_tracker/bmr.dart';
+import 'package:flutter_application_1/calorie_tracker/bmr_result.dart';
+import 'package:flutter_application_1/calorie_tracker/calorie_tracker.dart';
 
 import 'imports.dart';
 // ignore_for_file: prefer_const_constructors
@@ -15,19 +18,20 @@ class FitnessApp extends StatefulWidget {
 }
 
 class _FitnessAppState extends State<FitnessApp> {
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
-          systemNavigationBarColor: Constants.backgroundgrey,
+          systemNavigationBarColor: Constants.backgroundgrey.withOpacity(1),
           statusBarColor:
-              Constants.backgroundgrey, // Only honored in Android M and above
+              Constants.backgroundgrey.withOpacity(0), // Only honored in Android M and above
           statusBarIconBrightness: Brightness.dark),
     );
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AllFood(),
+      home: Home(),
     );
   }
 }

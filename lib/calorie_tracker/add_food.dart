@@ -27,7 +27,7 @@ class _AddFoodState extends State<AddFood> {
         protien.isNotEmpty &&
         carbs.isNotEmpty &&
         fat.isNotEmpty) {
-      var response = await http.post(Uri.parse(Constants.ADDFOOD_URL), body: {
+      var response = await http.post(Uri.parse(Constants.FOOD_ADDFOOD_URL), body: {
         "food": food,
         "weight": weight,
         "calorie": calorie,
@@ -99,16 +99,28 @@ class _AddFoodState extends State<AddFood> {
                                           fat.text);
                                     },
                                     child: Padding(
-                                      padding: const EdgeInsets.only(top: 10),
-                                      child: ConstantsWidget.getBottomButton(
-                                          "Add Food", 10, 0),
+                                      padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
+                                      child: Container(
+                                        height: 50,
+                                        decoration: BoxDecoration(
+                                            color: Constants.myred,
+                                          borderRadius: BorderRadius.circular(20)
+                                        ),
+                                        child: Center(child: Text("Add Food", style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: "Poppins",
+                                            fontSize: 16
+                                        ),)),
+                                      )
                                     ),
                                   )
                                 ],
                               ),
                             ),
                           )),
-                      ConstantsWidget.getTopLeftButton(Icons.arrow_back),
+                      ConstantsWidget.getTopLeftButton(Icons.arrow_back, Alignment.topLeft, 20, (){
+                        Navigator.pop(context);
+                      }),
                     ],
                   ),
                 )

@@ -23,13 +23,22 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-            child: Container(
-      color: Constants.backgroundgrey,
+        body: Container(
       height: double.infinity,
       width: double.infinity,
-      child: SingleChildScrollView(
-        child: ConstrainedBox(
+      decoration: BoxDecoration(
+        color: Constants.backgroundgrey,
+        image: DecorationImage(
+            colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.4), BlendMode.dstATop),
+            image: AssetImage("assets/homebg.jpg"),fit: BoxFit.cover),
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(colors: [Constants.backgroundgrey.withOpacity(0.1), Colors.red.withOpacity(0.1)],begin: Alignment.topCenter, stops: [0,1]),
+        ),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: ConstrainedBox(
           constraints: BoxConstraints.tightFor(
             height: Constants.getScreenHeight(context),
           ),
@@ -42,9 +51,9 @@ class _HomeState extends State<Home> {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        ConstantsWidget.getTopLeftButton(Icons.menu_rounded),
+                        ConstantsWidget.getTopLeftButton(Icons.menu_rounded, Alignment.topLeft, 0, (){}),
                         Padding(
-                          padding: const EdgeInsets.only(left: 15),
+                          padding: const EdgeInsets.only(left: 0),
                           child: Text(
                             "Hello Ankush!",
                             style: TextStyle(
@@ -55,26 +64,9 @@ class _HomeState extends State<Home> {
                         )
                       ],
                     ),
-                    Container(
-                      margin: EdgeInsets.only(top: 15),
-                      child: CalendarTimeline(
-                        initialDate: DateTime(2022, 1, 1),
-                        firstDate: DateTime(2022, 1, 1),
-                        lastDate: DateTime(2030, 1, 1),
-                        onDateSelected: (date) => print(date),
-                        leftMargin: 20,
-                        monthColor: Constants.mygrey,
-                        dayColor: Constants.mygrey,
-                        activeDayColor: Colors.white,
-                        activeBackgroundDayColor: Constants.myred,
-                        dotsColor: Constants.mygrey,
-                        selectableDayPredicate: (date) => date.day != 23,
-                        locale: 'en_ISO',
-                      ),
-                    ),
                     Padding(
                       padding:
-                          const EdgeInsets.only(top: 20, left: 20, right: 20),
+                          const EdgeInsets.only(top: 100, left: 20, right: 20),
                       child: Row(
                         children: [
                           homeFeatures("Calorie Tracker", Icons.directions_run,
@@ -101,9 +93,11 @@ class _HomeState extends State<Home> {
               ],
             ),
           ),
+            ),
+          ),
         ),
       ),
-    )));
+    ));
   }
 }
 
@@ -120,8 +114,7 @@ class homeFeatures extends StatelessWidget {
         onTap: ontap,
         child: Container(
           height: 100,
-          decoration: ConstantsWidget.getContainerBorder(
-              Colors.white, Colors.white, 25, 0),
+          decoration: ConstantsWidget.getContainerBorder( Colors.white, 25),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

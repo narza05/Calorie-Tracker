@@ -1,6 +1,9 @@
+import 'package:flutter_application_1/calorie_tracker/calorie_tracker.dart';
 import 'package:flutter_application_1/constants_widget.dart';
 import 'package:flutter_application_1/imports.dart';
 import 'package:flutter_application_1/models/all_food_model.dart';
+import 'package:http/http.dart' as http;
+import 'package:toast/toast.dart' as Toast;
 
 class Food extends StatefulWidget {
   AllFoodModel model;
@@ -15,9 +18,40 @@ class Food extends StatefulWidget {
 class _FoodState extends State<Food> {
   TextEditingController weightText = TextEditingController();
 
+  addFood() async {
+    var response = await http.post(Uri.parse(Constants.TRACKER_ADDFOOD_URL), body: {
+      "date" : Constants.getCurrentDate(),
+      "day" : Constants.getCurrentDay(),
+      "food" : widget.food,
+      "weight" : weightText.text,
+      "calorie" : (widget.calorie).toStringAsFixed(2).toString(),
+      "protien" : widget.protien.toStringAsFixed(2).toString(),
+      "carbs" : widget.carbs.toStringAsFixed(2).toString(),
+      "fat" : widget.fat.toStringAsFixed(2).toString(),
+    });
+    if(response.statusCode==200){
+      var data = response.body;
+      Toast.Toast.show(data.toString());
+      if(data.toString().contains("Added")){
+        goto();
+      }
+    }
+  }
+
+  goto(){
+    // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context){
+    //   return CalorieTracker();
+    // }), (route) => false);
+
+    Navigator.push(context, MaterialPageRoute(builder: (context){
+      return CalorieTracker();
+    }));
+  }
+
 
   @override
   Widget build(BuildContext context) {
+    Toast.ToastContext().init(context);
     return ConstantsWidget.getBasicScreen(
         context,
         Stack(
@@ -135,7 +169,9 @@ class _FoodState extends State<Food> {
                     ),
                   ),
                 ),
-                ConstantsWidget.getBottomButton("Add Food", 0, 10),
+                GestureDetector(onTap: (){
+                  addFood();
+                }, child: ConstantsWidget.getBottomButton("Add Food")),
               ],
             ),
           ],
